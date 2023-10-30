@@ -1,0 +1,16 @@
+.contentContainer {
+  display: flex;
+  justify-content: stretch;
+  gap: 10px;
+  .contentImage {
+    position: relative;
+    .tag {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      width: 60px;
+    }
+  }
+}
+
+
