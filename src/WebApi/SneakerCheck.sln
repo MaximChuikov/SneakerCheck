@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SneakerCheck.Data", "SneakerCheck.Data\SneakerCheck.Data.csproj", "{D81F4628-30F2-4FE9-A23C-520BA14602F9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SneakerCheck.Core", "SneakerCheck.Core\SneakerCheck.Core.csproj", "{EA95D9E8-CB96-4A71-B107-FC49C7AA42E6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SneakerCheck.Migrations", "SneakerCheck.Migrations\SneakerCheck.Migrations.csproj", "{4134E1E4-2B21-4C69-86D7-2962C7BD8CD3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SneakerCheck.Server", "SneakerCheck.Server\SneakerCheck.Server.csproj", "{64790848-9264-49D9-9AE5-8FEB7563BBEA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D81F4628-30F2-4FE9-A23C-520BA14602F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D81F4628-30F2-4FE9-A23C-520BA14602F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D81F4628-30F2-4FE9-A23C-520BA14602F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D81F4628-30F2-4FE9-A23C-520BA14602F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA95D9E8-CB96-4A71-B107-FC49C7AA42E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA95D9E8-CB96-4A71-B107-FC49C7AA42E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA95D9E8-CB96-4A71-B107-FC49C7AA42E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA95D9E8-CB96-4A71-B107-FC49C7AA42E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4134E1E4-2B21-4C69-86D7-2962C7BD8CD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4134E1E4-2B21-4C69-86D7-2962C7BD8CD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4134E1E4-2B21-4C69-86D7-2962C7BD8CD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4134E1E4-2B21-4C69-86D7-2962C7BD8CD3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64790848-9264-49D9-9AE5-8FEB7563BBEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64790848-9264-49D9-9AE5-8FEB7563BBEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64790848-9264-49D9-9AE5-8FEB7563BBEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64790848-9264-49D9-9AE5-8FEB7563BBEA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
