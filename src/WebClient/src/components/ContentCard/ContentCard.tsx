@@ -7,18 +7,18 @@ const ContentCard = ({ content }: { content: IContent }) => {
   return (
     <Card>
       <div className={cls.contentContainer}>
-        <div className={cls.contentImage}>
+        <div className={cls.contentImageContainer}>
           {content.fakeImageUrl && <Image
             src={content.fakeImageUrl}
           />}
           <img className={cls.tag} alt={'fake'} src={'/assets/legitIcons/fake.png'} />
         </div>
 
-        <div className={cls.contentImage}>
+        <div className={cls.contentImageContainer}>
           {content.originalImageUrl && <Image
             src={content.originalImageUrl}
           />}
-          <img className={cls.tag} alt={'fake'} src={'/assets/legitIcons/legit.png'} />
+          <img className={cls.tag} alt={'legit'} src={'/assets/legitIcons/legit.png'} />
         </div>
       </div>
       <Typography.Text>
