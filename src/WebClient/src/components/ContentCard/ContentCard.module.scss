@@ -2,8 +2,18 @@
   display: flex;
   justify-content: stretch;
   gap: 10px;
-  .contentImage {
+  .contentImageContainer {
     position: relative;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .contentImage {
+      width: 100%;
+    }
+
     .tag {
       position: absolute;
       right: 10px;

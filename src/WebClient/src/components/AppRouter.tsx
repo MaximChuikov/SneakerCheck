@@ -8,11 +8,13 @@ import ModelSearch from '../pages/ModelSearch'
 import Instruction from '../pages/Instruction'
 import Shops from '../pages/Shops'
 import InstructionsPreviews from '../pages/InstructionsPreviews'
+import CreateInstruction from "../pages/CreateInstruction";
 
 export enum RouteNames {
   LOGIN = '/login',
   SEARCH = '/search',
   INSTRUCTIONS = '/instructions',
+  CREATE_INSTRUCTION = '/create-instruction',
   SHOPS = '/shops',
   EVENT = '/'
 }
@@ -25,7 +27,6 @@ export enum Params {
 const AppRouter = () => {
   // const {isAuth} = useTypedSelector(state => state.auth);
 
-
   return (
     <Routes>
       <Route element={<AppContainer />}>
@@ -37,7 +38,7 @@ const AppRouter = () => {
         <Route path={RouteNames.SHOPS} element={<Shops />}>
           <Route path={`${RouteNames.SHOPS}${Params.shopId}`} element={<Instruction />} />
         </Route>
-
+        <Route path={RouteNames.CREATE_INSTRUCTION} element={<CreateInstruction />} />
         <Route path={'*'} element={<Typography>Не найдена страница 404</Typography>} />
       </Route>
     </Routes>
