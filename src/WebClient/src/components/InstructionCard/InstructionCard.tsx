@@ -29,7 +29,7 @@ const InstructionCard = ({ content }: { content: IInstructionPreview }) => {
             </Badge>
           </Col>
           <Col offset={2}>
-            <Badge count={content.likes} offset={[19, 18]} overflowCount={9999} style={{backgroundColor: '#ED522F', color: '#37393f', fontWeight: 'bold'}}>
+            <Badge count={content.dislikes} offset={[19, 18]} overflowCount={9999} style={{backgroundColor: '#ED522F', color: '#37393f', fontWeight: 'bold'}}>
               <Avatar shape={'square'} size={'large'} src={<DislikeFilled />} />
             </Badge>
           </Col>

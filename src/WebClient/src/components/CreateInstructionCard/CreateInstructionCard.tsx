@@ -1,13 +1,18 @@
-import React, {RefObject, useState} from 'react';
-import {Card, Divider, Form, UploadFile, UploadProps} from "antd";
+import React, {RefObject} from 'react';
+import {Card, Divider, Form, message, UploadProps} from "antd";
 import Dragger from "antd/es/upload/Dragger";
 import {InboxOutlined} from "@ant-design/icons";
-import cls from "../ContentCard/ContentCard.module.scss";
+import cls from "../InstructionContentCard/InstructionContentCard.module.scss";
 import ReactQuill from "react-quill";
 import * as Markerjs2 from "markerjs2";
+import {IInstructionCard} from "../../pages/CreateInstruction/types";
 
-const CreateInstructionCard = () => {
-    const [fileList, setFileList] = useState<UploadFile[]>([])
+const availableFiles = [
+    'image/jpeg',
+    'image/png'
+]
+
+const CreateInstructionCard = ({formValues, saveCallback}: {formValues: IInstructionCard, saveCallback: (data: IInstructionCard) => void}) => {
     const imgOriginalRef = React.createRef<HTMLImageElement>();
     const imgFakeRef = React.createRef<HTMLImageElement>();
 
@@ -31,7 +36,17 @@ const CreateInstructionCard = () => {
         multiple: true,
         action: null,
         onChange(info) {
-            setFileList(info.fileList)
+            const fileTypeCheck = availableFiles.includes(info.file.type ?? '')
+            if (!fileTypeCheck) {
+                message.error('Вы можете прикрепить png, jpeg');
+            }
+            const isLt2M = info.file.size / 1024 / 1024 < 5;
+            if (!isLt2M) {
+                message.error('Изображение должно быть меньше 5MB');
+            }
+            if (fileTypeCheck && isLt2M) {
+                saveCallback({description: formValues.description, photos: info.fileList})
+            }
         },
     };
 
@@ -43,14 +58,15 @@ const CreateInstructionCard = () => {
     };
 
     function validateFilesCount() {
-        return fileList.length >= 1 ? Promise.resolve() : Promise.reject('Нужно прикрепить хотя бы одно фото');
+        return formValues.photos.length >= 1 ? Promise.resolve() : Promise.reject('Нужно прикрепить хотя бы одно фото');
     }
 
     return (
         <Card>
             <Divider>Редактируемые фотографии</Divider>
             <Form.Item name="photos" rules={[{required: true, validator: validateFilesCount}]}>
-                <Dragger name={'Dragger'} maxCount={2} directory={false} beforeUpload={() => false} {...props}>
+                <Dragger showUploadList={{showDownloadIcon: true, }} fileList={formValues.photos}
+                         name={'Dragger'} maxCount={2} directory={false} beforeUpload={() => false} {...props}>
                     <p className="ant-upload-drag-icon">
                         <InboxOutlined/>
                     </p>
@@ -66,20 +82,20 @@ const CreateInstructionCard = () => {
 
             <div className={cls.contentContainer}>
                 {
-                    fileList[1] && (
+                    formValues.photos[1] && (
                         <div className={cls.contentImageContainer}>
-                            <img className={cls.contentImage} src={getImageUrl(fileList[1]) ?? ''} alt={'Фейк'}
+                            <img className={cls.contentImage} src={getImageUrl(formValues.photos[1]) ?? ''} alt={'Фейк'}
                                  ref={imgFakeRef} onClick={() => showMarkerArea(imgFakeRef)}/>
-                            <img className={cls.tag} alt={'fake'} src={'/assets/legitIcons/fake.png'}/>
+                            <img className={cls.imageTag} alt={'fake'} src={'/assets/legitIcons/fake.png'}/>
                         </div>
                     )
                 }
                 {
-                    fileList[0] && (
+                    formValues.photos[0] && (
                         <div className={cls.contentImageContainer}>
-                            <img className={cls.contentImage} src={getImageUrl(fileList[0]) ?? ''} alt={'Оригинал'}
+                            <img className={cls.contentImage} src={getImageUrl(formValues.photos[0]) ?? ''} alt={'Оригинал'}
                                  ref={imgOriginalRef} onClick={() => showMarkerArea(imgOriginalRef)}/>
-                            <img className={cls.tag} alt={'legit'} src={'/assets/legitIcons/legit.png'}/>
+                            <img className={cls.imageTag} alt={'legit'} src={'/assets/legitIcons/legit.png'}/>
                         </div>
                     )
                 }

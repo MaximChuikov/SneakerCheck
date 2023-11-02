@@ -1,7 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { AutoComplete, Flex } from 'antd'
-import IInstructionPreview from '../../models/IInstructionPreview'
 import useFetch from '../../hooks/useFetch'
 import { getSneakersModels } from '../../api/SneakersSearchService'
 import { RouteNames } from '../../components/AppRouter'
@@ -9,8 +8,7 @@ import GradientText from '../../components/GradientText'
 
 const ModelSearch = () => {
   const navigate = useNavigate()
-  const {data, loading} = useFetch<IInstructionPreview[]>(getSneakersModels)
-
+  const models = useFetch(getSneakersModels)
 
   function handleSearch(inputValue: string, option: {modelName: string}) {
     return option.modelName.toLowerCase().includes(inputValue.toLowerCase())
@@ -23,7 +21,7 @@ const ModelSearch = () => {
   }
 
   function getOptions(): any {
-    return data?.map((model) => {
+    return models.data ? models?.data?.map((model) => {
       return {
         value: model.modelId.toString(),
         modelName: model.modelName,
@@ -34,7 +32,7 @@ const ModelSearch = () => {
           </div>
         )
       }
-    }) ?? []
+    }) : []
   }
 
   return (
@@ -43,7 +41,7 @@ const ModelSearch = () => {
       <AutoComplete
         placeholder={'Введите название модели...'}
         size={'large'}
-        loading={loading}
+        loading={models.loading}
         style={{ width: '60vw'}}
         filterOption={handleSearch}
         popupMatchSelectWidth={false}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
     Card,
     Form,
@@ -8,15 +8,26 @@ import {
 } from 'antd';
 import 'react-quill/dist/quill.snow.css';
 import GradientText from "../../components/GradientText";
-import {PlusOutlined} from '@ant-design/icons'
+import {PlusOutlined, FileDoneOutlined} from '@ant-design/icons'
 import CreateInstructionCard from "../../components/CreateInstructionCard";
+import {IInstructionCard} from "./types";
 
+const emptyCard: IInstructionCard = {description: '', photos: []}
 
 const CreateInstruction = () => {
-    const [form] = Form.useForm();
+    const [form] = Form.useForm<string>();
+    const [formValues, setFormValues] = useState<IInstructionCard[]>([emptyCard])
 
     function submitHandler(value) {
-        console.log(value)
+        console.log(value, 'SUBMIT')
+    }
+
+    function saveCallback(data: IInstructionCard, index: number) {
+        setFormValues(prev => {
+            const prevState = [...prev]
+            prevState[index] = data
+            return prevState
+        })
     }
 
     return (
@@ -27,19 +38,22 @@ const CreateInstruction = () => {
             </Flex>
             <Form hideRequiredMark form={form} onFinish={submitHandler}>
                 <Flex vertical gap={'large'} size={'large'}>
-                    <CreateInstructionCard />
+                    {formValues.map((fv, idx) => <CreateInstructionCard formValues={fv} saveCallback={(data) => {saveCallback(data, idx)}} key={idx}/>)}
 
-                    <Divider>Добавить еще карточку
-                        <Button onClick={() => {}} style={{marginLeft: '18px'}} type="primary" icon={<PlusOutlined/>} size={'large'}>
-                            Добавить
-                        </Button>
+                    <Divider>Добавить карточку
+                        <Button
+                            onClick={() => setFormValues(prevState => [...prevState, emptyCard])} style={{marginLeft: '18px'}}
+                            type="primary"
+                            icon={<PlusOutlined/>}
+                            size={'large'}
+                        />
                     </Divider>
 
                     <Form.Item>
                         <Card>
                             <Flex justify={"center"} gap={'large'}>
                                 <b>Инструкция готова?</b>
-                                <Button type="primary" htmlType="submit" icon={<PlusOutlined />} >
+                                <Button type="primary" htmlType="submit" icon={<FileDoneOutlined />}>
                                     Сохранить инструкцию
                                 </Button>
                             </Flex>

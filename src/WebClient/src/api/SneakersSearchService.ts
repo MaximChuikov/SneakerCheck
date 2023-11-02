@@ -1,6 +1,6 @@
 import axios, {AxiosResponse} from "axios";
-import IInstructionPreview from "../models/IInstructionPreview";
+import {IModel} from "../models/IModel";
 
-export async function getSneakersModels(): Promise<AxiosResponse<IInstructionPreview[]>> {
-    return axios.get<IInstructionPreview[]>('/sneakersModels.json')
+export async function getSneakersModels(): Promise<AxiosResponse<IModel[]>> {
+    return axios.get<IModel[]>('/sneakersModels.json')
 }

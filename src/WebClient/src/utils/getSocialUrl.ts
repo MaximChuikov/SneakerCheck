@@ -1,7 +1,6 @@
 import SocialNameEnum from '../models/SocialNameEnum'
 
 export default function getSocialUrl(social: SocialNameEnum) {
-  console.log(social)
   const path = '/assets/socialsIcons/'
   switch (social) {
     case SocialNameEnum.telegram:

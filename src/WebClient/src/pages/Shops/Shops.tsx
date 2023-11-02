@@ -14,7 +14,7 @@ const Shops = () => {
       <GradientText text={'Список магазинов в вашем городе'} />
       {shops.loading
         ? <Spin />
-        : shops.data?.map((c) => <ShopCard content={c} /> ?? 'я пустой')
+        : shops.data?.map((c) => <ShopCard content={c} key={c.shopId} /> ?? 'я пустой')
       }
     </Flex>
   )
